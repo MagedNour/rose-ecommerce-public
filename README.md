@@ -29,7 +29,7 @@ Rose E-commerce is a frontend e-commerce platform built with Next.js, Tailwind C
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/Omarbassuony/Rose-E-commerce.git
+   git clone https://github.com/MagedNour/rose-ecommerce-public.git
    ```
 2. Install dependencies:
    ```bash
