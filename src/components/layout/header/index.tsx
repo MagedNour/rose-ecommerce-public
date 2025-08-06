@@ -14,6 +14,7 @@ import Logout from "./components/logout";
 import MobileNavigation from "./components/mobile-navigation";
 import { getServerSession } from "next-auth";
 import { getTranslations } from "next-intl/server";
+import NavigationLinks from "./components/navigation-links";
 
 export default async function Header() {
   // Translation
@@ -33,14 +34,7 @@ export default async function Header() {
       </Link>
 
       {/* Desktop Navigation */}
-      <div className="hidden mx-auto md:flex gap-5 text-custom-blue-900 font-medium rtl:font-semibold text-base">
-        <Link className="text-custom-rose-900" href={"/"}>
-          {t("home")}
-        </Link>
-        <Link href={"/products"}>{t("products")}</Link>
-        <Link href={"/about"}>{t("about")}</Link>
-        <Link href={"/contact"}>{t("contact")}</Link>
-      </div>
+      <NavigationLinks />
 
       {/* Desktop Actions */}
       <div className="flex ms-auto md:ms-0 gap-5 items-center">

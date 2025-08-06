@@ -12,7 +12,7 @@ export default function CategoryCard({ category }: { category: Category }) {
       className="bg-custom-rose-25 flex rounded-2xl p-3 sm:p-4 gap-2 sm:gap-4 h-full items-center cursor-grab">
     
       {/* Image */}
-      <div className="bg-custom-rose-900 p-3 sm:p-4 rounded-full flex items-center justify-center shrink-0">
+      <div className="p-3 sm:p-4 rounded-full flex items-center justify-center shrink-0">
         <Image
           width={40}
           height={40}
