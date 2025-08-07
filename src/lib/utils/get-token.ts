@@ -1,15 +1,22 @@
-import { decode } from "next-auth/jwt";
+"use server";
+
+import { getToken as nextAuthGetToken } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
 export default async function getToken() {
-  // Get token
   try {
-    const tokenCookies = cookies().get(process.env.AUTH_COOKIES as string)?.value;
-    const token = await decode({ token: tokenCookies, secret: process.env.NEXTAUTH_SECRET! });
+    const token = await nextAuthGetToken({
+      req: {
+        cookies: cookies(),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any, // 👈 Workaround to satisfy TS – safe here
+      secret: process.env.NEXTAUTH_SECRET!,
+    });
 
-    return token?.token;
+    console.log("✅ Token successfully retrieved:", token);
+    return token?.token ?? null;
   } catch (error) {
-    console.error("Error getting token:", error);
+    console.error("❌ Error getting token:", error);
     return null;
   }
 }
