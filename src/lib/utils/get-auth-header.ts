@@ -1,22 +1,36 @@
 import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
-export default async function getAuthHeader() {
-  const tokenCookie = cookies().get("next-auth.session-token")?.value;
-  let accessToken: string = "";
+export default async function getAuthHeader(): Promise<HeadersInit> {
+  const cookieStore = cookies();
+
+  const tokenCookie =
+    cookieStore.get("__Secure-next-auth.session-token")?.value || // production
+    cookieStore.get("next-auth.session-token")?.value; // dev
+
+  if (!tokenCookie) {
+    console.warn("⚠️ No session token cookie found");
+    return {};
+  }
 
   try {
-    const JWT = await decode({
-      token: tokenCookie || "",
+    const jwt = await decode({
+      token: tokenCookie,
       secret: process.env.NEXTAUTH_SECRET!,
     });
 
-    accessToken = JWT?.token || "";
-  } catch (error) {
-    void error;
-  }
+    const accessToken = jwt?.token;
 
-  return {
-    Authorization: `Bearer ${accessToken}`,
-  };
+    if (!accessToken) {
+      console.warn("⚠️ No access token inside JWT");
+      return {};
+    }
+
+    return {
+      Authorization: `Bearer ${accessToken}`,
+    };
+  } catch (error) {
+    console.error("❌ Failed to decode token:", error);
+    return {};
+  }
 }
