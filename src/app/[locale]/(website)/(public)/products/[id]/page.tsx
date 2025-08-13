@@ -37,63 +37,61 @@ export default async function ProductDetailsPage({ params }: { params: { id: str
   const isInStock = quantity > 0;
 
   return (
-    <main className="mt-20 mx-[80px]">
-      <div className="flex flex-row gap-10 items-center">
-        <div className="flex flex-col">
-          {/* Product Image & Carousel */}
+    <main className="mt-20 px-4 sm:px-8 md:px-[80px]">
+      <div className="flex flex-col md:flex-row gap-10 items-start md:items-center">
+        {/* Left: Images */}
+        <div className="flex flex-col w-full md:w-1/2">
           <ProductCarousel images={images} imgCover={imgCover} />
         </div>
 
-        <div className="flex-1">
+        {/* Right: Details */}
+        <div className="flex flex-col w-full md:w-1/2">
           {/* Product Title */}
-          <h1 className="font-semibold text-2xl mb-[26px]">{title}</h1>
+          <h1 className="font-semibold text-xl sm:text-2xl mb-6">{title}</h1>
 
           {/* Product Price */}
-          <div className="font-roboto mb-[26px]">
-            {/* If Product Has Discount, Display The Price & PriceAfterDiscount  */}
+          <div className="font-roboto mb-6">
             {discount > 0 ? (
               <>
-                <span className="line-through text-custom-muted text-[18px] font-medium mr-1 leading-6">
+                <span className="line-through text-custom-muted text-base sm:text-lg font-medium mr-1 leading-6">
                   ${price}
                 </span>
-                <span className="text-custom-rose-900 text-2xl font-medium mr-3">
+                <span className="text-custom-rose-900 text-xl sm:text-2xl font-medium mr-3">
                   ${priceAfterDiscount}
                 </span>
-                <span className="text-custom-red text-[15px] font-medium">
+                <span className="text-custom-red text-sm sm:text-base font-medium">
                   {discount}% {t("off")}
                 </span>
               </>
             ) : (
-              <span className="text-custom-rose-900 text-2xl font-medium">${price}</span>
+              <span className="text-custom-rose-900 text-xl sm:text-2xl font-medium">${price}</span>
             )}
           </div>
 
           {/* Product Description */}
-          <div className="my-[26px]">
-            <p className="font-roboto leading-7 text-base font-normal w-[518px] break-words text-custom-blue-500">
+          <div className="my-6">
+            <p className="font-roboto leading-7 text-base font-normal max-w-full sm:max-w-lg break-words text-custom-blue-500">
               {description}
             </p>
           </div>
 
           {/* Product Details */}
-          <div className="mb-[26px]">
+          <div className="mb-6">
             <ul className="list-disc text-custom-muted font-roboto leading-7 pl-5 -ml-4">
-              <li className="font-medium text-base mb-[10px]">
+              <li className="font-medium text-base mb-2">
                 {t("stock")}
                 <span
-                  className={`font-normal text-base mb-[9px] ml-2 ${isInStock ? "text-custom-blue-500" : "text-red-600"}`}
+                  className={`font-normal text-base ml-2 ${isInStock ? "text-custom-blue-500" : "text-red-600"}`}
                 >
-                  {/* If Product In Stock Display InStock, Other Wise Display Out Of Stock */}
                   {isInStock ? t("in-stock") : t("out-of-stock-0")}
                 </span>
               </li>
             </ul>
           </div>
 
-          {/* If Quantity greater Than 0, Display The Component, Other Wise Don't Display It */}
+          {/* Add to Cart */}
           {quantity > 0 && (
-            <div className="mt-[13px]">
-              {/* Add To Cart And Counter Component */}
+            <div className="mt-3">
               <AddToCartWrapper productId={params.id} stock={quantity} initialCartQuantity={0} />
             </div>
           )}

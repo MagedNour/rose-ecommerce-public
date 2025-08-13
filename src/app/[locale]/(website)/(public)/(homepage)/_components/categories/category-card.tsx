@@ -8,9 +8,9 @@ export default function CategoryCard({ category }: { category: Category }) {
 
   return (
     <Link
-      href={`/categories/${category._id}`}
-      className="bg-custom-rose-25 flex rounded-2xl p-3 sm:p-4 gap-2 sm:gap-4 h-full items-center cursor-grab">
-    
+      href={`/products?page=1&category=${category._id}`}
+      className="bg-custom-rose-25 flex rounded-2xl p-3 sm:p-4 gap-2 sm:gap-4 h-full items-center cursor-pointer"
+    >
       {/* Image */}
       <div className="p-3 sm:p-4 rounded-full flex items-center justify-center shrink-0">
         <Image
@@ -25,7 +25,9 @@ export default function CategoryCard({ category }: { category: Category }) {
       {/* Card info */}
       <div>
         {/* Name */}
-        <p className="text-custom-blue-900 capitalize font-bold text-sm sm:text-base">{category.name}</p>
+        <p className="text-custom-blue-900 capitalize font-bold text-sm sm:text-base">
+          {category.name}
+        </p>
 
         {/* Count */}
         <p className="text-custom-blue-500  text-xs sm:text-sm">

@@ -23,13 +23,29 @@ export default function HandBagIcon({ productId, stock, initialCartQuantity }: A
   };
 
   return (
-    <button type="button" onClick={handleAddToCart} disabled={isAddingToCart || stock <= 0}>
-      {/* If The Product Is Adding To Cart Show The Loader, Else Show The Cart Icon */}
-      {isAddingToCart ? (
-        <Loader2 className="animate-spin text-white" />
-      ) : (
-        <BsHandbag className="text-lg text-white font-black" />
+    <div className="relative group inline-block">
+      <button
+        type="button"
+        onClick={handleAddToCart}
+        disabled={isAddingToCart || stock <= 0}
+        className={`${stock <= 0 ? "cursor-not-allowed" : ""}`}
+      >
+        {isAddingToCart ? (
+          <Loader2 className="animate-spin text-white" />
+        ) : (
+          <BsHandbag className="text-lg text-white font-black" />
+        )}
+      </button>
+
+      {stock <= 0 && (
+        <div
+          className="absolute w-10 left-1/2 -translate-x-1/2 top-full mt-2
+                 rounded bg-black text-white text-xs px-2 py-1
+                 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap min-w-[100px] text-center"
+        >
+          Out of stock
+        </div>
       )}
-    </button>
+    </div>
   );
 }

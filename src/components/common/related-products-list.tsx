@@ -48,7 +48,7 @@ export default async function RelatedProductsList({
       )}
 
       {/* Display Related Products */}
-      <div className={`grid ${columns === 3 ? "grid-cols-3" : "grid-cols-4"} gap-6`}>
+      <div className={`grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-${columns}`}>
         {relatedProducts?.map((product) => (
           <div key={product._id}>
             <ProductCard product={product} />

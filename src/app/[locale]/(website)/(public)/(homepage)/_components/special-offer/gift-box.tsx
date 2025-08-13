@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export default function GiftBox() {
   // Translation
@@ -36,9 +37,11 @@ export default function GiftBox() {
             </p>
 
             {/* Button gifts box */}
-            <button className="bg-custom-rose-900 text-white p-[8px] rounded-[20px] text-[14px] font-[400]">
-              {t("shop-now")}
-            </button>
+            <Link href={`/products`}>
+              <button className="bg-custom-rose-900 text-white p-[8px] rounded-[20px] text-[14px] font-[400]">
+                {t("shop-now")}
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -92,9 +95,11 @@ export default function GiftBox() {
             </p>
 
             {/* Button combo gifts */}
-            <button className="bg-custom-rose-900 text-white p-[8px] rounded-[20px] text-[14px] font-[400]">
-              {t("discover-now")}
-            </button>
+            <Link href={`/products`}>
+              <button className="bg-custom-rose-900 text-white p-[8px] rounded-[20px] text-[14px] font-[400]">
+                {t("discover-now")}
+              </button>
+            </Link>
           </div>
         </div>
       </div>

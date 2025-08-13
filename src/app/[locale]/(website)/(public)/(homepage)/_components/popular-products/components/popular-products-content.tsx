@@ -28,7 +28,7 @@ export default async function PopularProductsContent({
 
       {/* Products list */}
       {products?.products.map((product: Product) => (
-        <div key={product?._id} className="w-1/4 px-4 mb-6">
+        <div key={product?._id} className="w-full md:w-1/2 lg:w-1/4 px-4 mb-6">
           <ProductCard product={product} />
         </div>
       ))}

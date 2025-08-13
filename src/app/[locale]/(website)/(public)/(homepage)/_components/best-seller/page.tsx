@@ -3,6 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import CarouselComponent from "../best-seller-carousel";
 import { getPopularProducts } from "@/lib/api/get-products.api";
 import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/routing";
 
 export default async function BestSellerPage() {
   // Translation
@@ -33,10 +34,12 @@ export default async function BestSellerPage() {
 
           {/* Explore more button */}
           <div>
-            <Button className=" bg-custom-rose-900 text-sm  hover:bg-custom-rose-800 rounded-[10px] px-2 py-2w-[109px] h-[45px] md:text-base md:px-4 md:py-2 flex items-center justify-center gap-1">
-              {t("explore-more-0")}
-              <FaArrowRight className="rtl:scale-x-[-1] ml-2" />
-            </Button>
+            <Link href={`/products`}>
+              <Button className=" bg-custom-rose-900 text-sm  hover:bg-custom-rose-800 rounded-[10px] px-2 py-2w-[109px] h-[45px] md:text-base md:px-4 md:py-2 flex items-center justify-center gap-1">
+                {t("explore-more-0")}
+                <FaArrowRight className="rtl:scale-x-[-1] ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
 
